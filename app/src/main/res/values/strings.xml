@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Majong_java</string>
+    <string name="app_name">Mahjong_java</string>
+    <string name="start">スタート</string>
 </resources>

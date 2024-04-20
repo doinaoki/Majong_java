@@ -1,4 +1,4 @@
-package com.example.majong_java;
+package com.example.mahjong_java;
 
 import androidx.appcompat.app.AppCompatActivity;
 

@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "Majong_java"
+rootProject.name = "Mahjong_java"
 include(":app")

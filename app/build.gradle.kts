@@ -3,11 +3,11 @@ plugins {
 }
 
 android {
-    namespace = "com.example.majong_java"
+    namespace = "com.example.mahjong_java"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.majong_java"
+        applicationId = "com.example.mahjong_java"
         minSdk = 24
         targetSdk = 34
         versionCode = 1
