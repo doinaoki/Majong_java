@@ -7,34 +7,12 @@
     android:layout_alignWithParentIfMissing="false"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/startButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/start"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.632" />
-
-    <Button
-        android:id="@+id/scoreButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/score"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.754" />
 
     <TextView
         android:id="@+id/learningMahjongText"
         android:layout_width="134dp"
         android:layout_height="59dp"
-        android:text="@string/learningMahjong"
+        android:text="@string/normalButton"
         android:textSize="30sp"
         android:textStyle="bold"
         android:gravity="center"
