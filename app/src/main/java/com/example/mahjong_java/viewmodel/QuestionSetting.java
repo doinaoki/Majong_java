@@ -1,4 +1,4 @@
-package com.example.mahjong_java.modelview;
+package com.example.mahjong_java.viewmodel;
 
 public class QuestionSetting {
     public static int numberOfHand = 13;

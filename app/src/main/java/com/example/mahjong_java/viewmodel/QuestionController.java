@@ -1,4 +1,4 @@
-package com.example.mahjong_java.modelview;
+package com.example.mahjong_java.viewmodel;
 
 
 public class QuestionController {
@@ -12,5 +12,4 @@ public class QuestionController {
         generateQuestion.generate();
         return generateQuestion.getQuestion();
     }
-
 }

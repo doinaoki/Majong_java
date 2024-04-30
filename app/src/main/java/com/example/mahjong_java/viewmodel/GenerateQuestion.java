@@ -1,10 +1,9 @@
-package com.example.mahjong_java.modelview;
+package com.example.mahjong_java.viewmodel;
 
 import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Deque;
-import java.util.HashMap;
 import java.util.List;
 
 public class GenerateQuestion {
@@ -28,52 +27,53 @@ public class GenerateQuestion {
     }
 
     class AnalyzeHand {
-        private List<Deque<int[]>> possibleWinElements = new ArrayList<>();
-        private List<HashMap<Integer, List<Deque<int[]>>>> possibleWinHand = new ArrayList<>();
-        public List<HashMap<Integer, List<Deque<int[]>>>> getWinHands() {
-            return possibleWinHand;
+        private List<AnalyzedPieces> arrayAnalyzedPieces;
+        private final List<AnalyzedPieces> arrayAnalyzedReady = new ArrayList<>();
+        public List<AnalyzedPieces> getAnalyzedReady() {
+            return arrayAnalyzedReady;
         }
 
         public void analyzeReady() {
-            List<Integer> winPieces = new ArrayList<Integer>();
+            List<AnalyzedPieces> winPieces = new ArrayList<>();
             for (int winPiece = 0; winPiece < 9; winPiece++) {
                 if (!hand.addPiece(winPiece, 1)) {
                     continue;
                 }
-                if (!analyzeHead().isEmpty()) {
-                    winPieces.add(winPiece);
+                for (AnalyzedPieces ap: analyzeHead()) {
+                    ap.setWinPiece(winPiece);
+                    arrayAnalyzedReady.add(ap);
                 }
                 hand.subtractPiece(winPiece, 1);
             }
-            return;
         }
 
-        private HashMap<Integer, List<Deque<int[]>>> analyzeHead() {
-            HashMap<Integer, List<Deque<int[]>>> analyzedHand = new HashMap<>();
+        private List<AnalyzedPieces> analyzeHead() {
+            List<AnalyzedPieces> analyzedPieces = new ArrayList<>();
             for (int head = 0; head < 9; head++) {
                 if (!hand.subtractPiece(head, 2)) {
                     continue;
                 }
-                possibleWinElements = new ArrayList<>();
+                arrayAnalyzedPieces = new ArrayList<>();
                 analyzeElements();
-                if (!possibleWinElements.isEmpty()) {
-                    analyzedHand.put(head, possibleWinElements);
+                for(AnalyzedPieces ah: arrayAnalyzedPieces) {
+                    ah.setHead(head);
+                    analyzedPieces.add(ah);
                 }
                 hand.addPiece(head, 2);
             }
-            possibleWinHand.add(analyzedHand);
-            return analyzedHand;
+            return analyzedPieces;
         }
 
         private void analyzeElements() {
             Deque<int[]> elements = new ArrayDeque<>();
             analyzeElements0(elements, 0);
-            return;
         }
 
         private void analyzeElements0(Deque<int[]> elements, int nextInt) {
             if (hand.isEmpty()) {
-                possibleWinElements.add(elementsClone(elements));
+                AnalyzedPieces analyzedPieces = new AnalyzedPieces();
+                analyzedPieces.setElements(elements);
+                arrayAnalyzedPieces.add(analyzedPieces);
                 return;
             }
             for (int number = nextInt; number < 9; number++) {
@@ -99,6 +99,28 @@ public class GenerateQuestion {
                 newElements.push(newElement);
             }
             return newElements;
+        }
+    }
+
+    class AnalyzedPieces {
+        private Deque<int[]> elements;
+        private Integer head;
+        private Integer winPiece;
+
+        public void setElements(Deque<int[]> elements) {
+            this.elements = elements;
+        }
+
+        public void setHead(Integer head) {
+            this.head = head;
+        }
+
+        public void setWinPiece(Integer winPieces) {
+            this.winPiece = winPieces;
+        }
+
+        public Integer getWinPieces() {
+            return winPiece;
         }
     }
 
