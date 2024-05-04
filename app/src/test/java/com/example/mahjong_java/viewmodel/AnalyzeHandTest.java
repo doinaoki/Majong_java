@@ -40,6 +40,10 @@ public class AnalyzeHandTest {
         piecesArray.add(new int[]{3, 0, 3, 0, 3, 0, 3, 0, 1});
         readyAnswer.add(Arrays.stream(new int[]{7, 8}).boxed().toArray(Integer[]::new));
 
+        //seven pairs
+        piecesArray.add(new int[]{2, 0, 2, 2, 2, 2, 0, 2, 1});
+        readyAnswer.add(Arrays.stream(new int[]{8}).boxed().toArray(Integer[]::new));
+
     }
 
     @Test
