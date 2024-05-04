@@ -7,7 +7,7 @@ import java.util.Deque;
 import java.util.List;
 
 public class GenerateQuestion {
-    private Question question = new Question();
+    private final Question question = new Question();
     private final List<AnalyzedPieces> arrayAnalyzedReady = new ArrayList<>();
     private final Hand hand;
     public GenerateQuestion (Hand hand){
@@ -20,7 +20,6 @@ public class GenerateQuestion {
 
     public void generate() {
         boolean readyHand = QuestionSetting.readyHand;
-        question = new Question();
         AnalyzeHand analyzeHand = new AnalyzeHand();
         analyzeHand.analyzeReady();
         analyzeRoles();
@@ -33,12 +32,15 @@ public class GenerateQuestion {
         }
 
         public void analyzeReady() {
-            List<AnalyzedPieces> winPieces = new ArrayList<>();
             for (int winPiece = 0; winPiece < 9; winPiece++) {
                 if (!hand.addPiece(winPiece, 1)) {
                     continue;
                 }
                 for (AnalyzedPieces ap: analyzeHead()) {
+                    ap.setWinPiece(winPiece);
+                    arrayAnalyzedReady.add(ap);
+                }
+                for (AnalyzedPieces ap: analyzeExceptionReady()) {
                     ap.setWinPiece(winPiece);
                     arrayAnalyzedReady.add(ap);
                 }
@@ -99,12 +101,34 @@ public class GenerateQuestion {
             }
             return newElements;
         }
+
+        private List<AnalyzedPieces> analyzeExceptionReady() {
+            List<AnalyzedPieces> analyzedPiecesList = new ArrayList<>();
+            if (QuestionSetting.numberOfHand == 13) {
+                boolean sevenPairs = true;
+                for (int number: hand.getHand()){
+                    if (number != 2 & number != 0) {
+                        sevenPairs = false;
+                        break;
+                    }
+                }
+                if (sevenPairs){
+                    AnalyzedPieces ap = new AnalyzedPieces();
+                    ap.setException(true);
+                    analyzedPiecesList.add(ap);
+                }
+            }
+
+            return analyzedPiecesList;
+        }
+
     }
 
     class AnalyzedPieces {
         private Deque<int[]> elements;
         private Integer head;
         private Integer winPiece;
+        private Boolean exception = false;
 
         public void setElements(Deque<int[]> elements) {
             this.elements = elements;
@@ -118,14 +142,22 @@ public class GenerateQuestion {
             this.winPiece = winPieces;
         }
 
+        public void setException(Boolean b) {
+            this.exception = b;
+        }
         public Integer getWinPieces() {
             return winPiece;
+        }
+
+        public Boolean getException() {
+            return exception;
         }
     }
 
     private void analyzeRoles() {
 
     }
+
 
     private void analyzeExceptionalRoles() {
 
