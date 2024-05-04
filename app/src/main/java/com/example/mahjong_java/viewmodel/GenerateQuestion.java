@@ -8,7 +8,7 @@ import java.util.List;
 
 public class GenerateQuestion {
     private Question question = new Question();
-
+    private final List<AnalyzedPieces> arrayAnalyzedReady = new ArrayList<>();
     private final Hand hand;
     public GenerateQuestion (Hand hand){
         this.hand = hand;
@@ -28,7 +28,6 @@ public class GenerateQuestion {
 
     class AnalyzeHand {
         private List<AnalyzedPieces> arrayAnalyzedPieces;
-        private final List<AnalyzedPieces> arrayAnalyzedReady = new ArrayList<>();
         public List<AnalyzedPieces> getAnalyzedReady() {
             return arrayAnalyzedReady;
         }
@@ -125,6 +124,10 @@ public class GenerateQuestion {
     }
 
     private void analyzeRoles() {
+
+    }
+
+    private void analyzeExceptionalRoles() {
 
     }
 }
