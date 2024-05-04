@@ -6,9 +6,7 @@ public class QuestionController {
     }
 
     public Question generate(){
-        Hand hand = new Hand();
-        hand.create();
-        GenerateQuestion generateQuestion = new GenerateQuestion(hand);
+        GenerateQuestion generateQuestion = new GenerateQuestion();
         generateQuestion.generate();
         return generateQuestion.getQuestion();
     }

@@ -8,8 +8,12 @@ import java.util.List;
 
 public class GenerateQuestion {
     private final Question question = new Question();
-    private final List<AnalyzedPieces> arrayAnalyzedReady = new ArrayList<>();
+    private List<AnalyzedPieces> arrayAnalyzedReady;
     private final Hand hand;
+    public GenerateQuestion (){
+        this.hand = new Hand();
+        hand.create();
+    }
     public GenerateQuestion (Hand hand){
         this.hand = hand;
     }
@@ -23,7 +27,14 @@ public class GenerateQuestion {
         AnalyzeHand analyzeHand = new AnalyzeHand();
         analyzeHand.analyzeReady();
         analyzeRoles();
+        while(readyHand & arrayAnalyzedReady.isEmpty()) {
+            hand.create();
+            analyzeHand = new AnalyzeHand();
+            analyzeHand.analyzeReady();
+            analyzeRoles();
+        }
     }
+
 
     class AnalyzeHand {
         private List<AnalyzedPieces> arrayAnalyzedPieces;
@@ -32,6 +43,7 @@ public class GenerateQuestion {
         }
 
         public void analyzeReady() {
+            arrayAnalyzedReady = new ArrayList<>();
             for (int winPiece = 0; winPiece < 9; winPiece++) {
                 if (!hand.addPiece(winPiece, 1)) {
                     continue;
