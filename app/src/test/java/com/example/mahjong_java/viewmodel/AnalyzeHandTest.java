@@ -12,6 +12,8 @@ public class AnalyzeHandTest {
     public List<int[]> piecesArray = new ArrayList<>();
     public List<Integer[]> readyAnswer = new ArrayList<>();
     public AnalyzeHandTest() {
+        QuestionSetting.readyHand = false;
+
         // not ready
         piecesArray.add(new int[]{4, 4, 0, 0, 0, 1, 0, 0, 4});
         readyAnswer.add(Arrays.stream(new int[]{}).boxed().toArray(Integer[]::new));
