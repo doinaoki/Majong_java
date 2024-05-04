@@ -33,8 +33,19 @@ public class GenerateQuestion {
             analyzeHand.analyzeReady();
             analyzeRoles();
         }
+        handToQuestion();
     }
 
+    private void handToQuestion() {
+        List<Integer> winPieces = new ArrayList<>();
+        for (AnalyzedPieces ah: arrayAnalyzedReady){
+            if (! winPieces.contains(ah.getWinPieces())){
+                winPieces.add(ah.getWinPieces());
+            }
+        }
+        question.setHand(hand);
+        question.setWinPieces(winPieces);
+    }
 
     class AnalyzeHand {
         private List<AnalyzedPieces> arrayAnalyzedPieces;
