@@ -18,11 +18,7 @@ public class GenerateQuestion {
         this.hand = hand;
     }
 
-    public Question getQuestion() {
-        return question;
-    }
-
-    public void generate() {
+    public Question generate() {
         boolean readyHand = QuestionSetting.readyHand;
         AnalyzeHand analyzeHand = new AnalyzeHand();
         analyzeHand.analyzeReady();
@@ -34,6 +30,7 @@ public class GenerateQuestion {
             analyzeRoles();
         }
         handToQuestion();
+        return question;
     }
 
     private void handToQuestion() {
