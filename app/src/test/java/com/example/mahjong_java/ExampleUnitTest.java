@@ -1,8 +1,8 @@
-package com.example.majong_java;
+package com.example.mahjong_java;
+
+import static org.junit.Assert.assertEquals;
 
 import org.junit.Test;
-
-import static org.junit.Assert.*;
 
 /**
  * Example local unit test, which will execute on the development machine (host).

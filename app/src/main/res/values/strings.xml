@@ -1,3 +1,7 @@
 <resources>
-    <string name="app_name">Majong_java</string>
+    <string name="app_name">Mahjong_java</string>
+    <string name="start">スタート</string>
+    <string name="score">成績</string>
+    <string name="learningMahjong">麻雀学習</string>
+    <string name="normalButton">通常</string>
 </resources>
